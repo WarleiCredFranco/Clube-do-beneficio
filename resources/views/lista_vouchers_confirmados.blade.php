@@ -33,42 +33,49 @@
 
 <br>
 
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-<br>
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
-<a href="{{ route('dashboard_gerente') }}"><button class="btn btn-primary">Voltar</button></a>
+    <br>
+
+    <a href="{{ route('dashboard_gerente') }}"><button class="btn btn-primary">Voltar</button></a>
 
 
-<h2 class="text-center text-info">Lista de Vouchers Confirmados</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID Cliente</th>
-                <th scope="col">Código do Voucher</th>
-                <th scope="col">Data de Confirmação</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($vouchersConfirmados as $voucher)
+    <h2 class="text-center text-info">Lista de Vouchers Confirmados</h2><br>
+    <div class="container" style="display: flex; align-items: center; justify-content: center;">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>{{ $voucher->id_cliente }}</td>
-                    <td>{{ $voucher->codigo_voucher }}</td>
-                    <td>{{ $voucher->updated_at }}</td>
+                    <th scope="col">ID Cliente</th>
+                    <th scope="col">Nome do Cliente</th>
+                    <th scope="col">Produto Trocado</th>
+                    <th scope="col">Código do Voucher</th>
+                    <th scope="col">Data de Confirmação</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($vouchersConfirmados as $voucher)
+                    <tr>
+                        <td>{{ $voucher->id_cliente }}</td>
+                        <td>{{ $voucher->cliente->name }}</td>
+                        <td>{{ $voucher->produto->nome }}</td>
+                        <td>{{ $voucher->codigo_voucher }}</td>
+                        <td>{{ $voucher->updated_at }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
 
 

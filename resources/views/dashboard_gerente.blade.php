@@ -51,7 +51,7 @@
 <div class="container" style="display: flex; align-items: center; justify-content: center;">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center text-info">Bem-vindo, Gerente!</h1><br>
+            <h1 class="text-center text-info">Bem-vindo, {{ Auth::user()->name }}!</h1><br>
 
             <!-- Lista de Clientes Cadastrados -->
             <!-- Lista de Clientes Cadastrados -->

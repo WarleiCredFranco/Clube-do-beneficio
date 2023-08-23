@@ -181,7 +181,10 @@ class GerenteController extends Controller
 
     public function listaVouchersConfirmados()
     {
-        $vouchersConfirmados = Voucher::where('trocado', 1)->get();
+        $vouchersConfirmados = Voucher::where('trocado', 1)
+            ->orderByDesc('updated_at')
+            ->get();
+            
 
         return view('lista_vouchers_confirmados', compact('vouchersConfirmados'));
     }

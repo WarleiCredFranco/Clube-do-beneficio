@@ -53,7 +53,7 @@
         <div class="col-md-12 centered-div">
             <form class="form-control" action="">
 
-                <h1 class="text-center text-info">Bem-vindo, Cliente!</h1>
+                <h1 class="text-center text-info">Bem-vindo, {{ Auth::user()->name }}!</h1>
                 <br>
                 <div class="form-group" style="text-align: center; font-size: 3rem">
                     <!-- Exibir a quantidade de pontos do cliente -->
