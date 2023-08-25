@@ -29,6 +29,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Obter o usuário autenticado
+        $user = Auth::user();
+
+        //Redirecionar com base no nível de acesso (role) do usuário.
+        if ($user->role === 'cliente') {
+            return redirect()->route('dashboard_cliente');
+        } elseif ($user->role === 'gerente') {
+            return redirect()->route('dashboard_gerente');
+        }
+
+        //Caso não seja cliente nem gerente, redirecione para a HOME padrão
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

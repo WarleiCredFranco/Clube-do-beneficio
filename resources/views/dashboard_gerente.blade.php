@@ -9,7 +9,7 @@
     <!-- Seus estilos CSS aqui -->
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Clube do Benefício</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('lista.vouchers.confirmados') }}">Lista de Vouchers Trocados</a>
@@ -25,9 +25,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}">Sair</a>
-            </li>
+            <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="btn btn-primary" type="submit">Sair</button>
+            </form>
         </ul>
     </div>
 </nav>
@@ -332,6 +333,14 @@
     <hr>
     <br>
 
-    <!-- Seus outros conteúdos aqui -->
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; SuperMercMais! 2023</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
 </body>
 </html>
