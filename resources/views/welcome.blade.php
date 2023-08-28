@@ -92,14 +92,37 @@
             </div>
 
 
-            <!-- Footer-->
+                <<!-- Footer-->
                 <footer class="py-5 bg-dark">
                     <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; SuperMercMais! 2023</p></div>
+                    <div
+                        class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5">
+
+                        <!-- Right -->
+                        <div>
+                        <a href="#!" class="text-white me-4">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#!" class="text-white me-4">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#!" class="text-white me-4">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#!" class="text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>         
                 </footer>
+
+
+                <!-- React - animação de botão -->
+                
                 <!-- Bootstrap core JS-->
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
                 <!-- Core theme JS-->
                 <script src="js/scripts.js"></script>
+                <script src="https://kit.fontawesome.com/15d55aa13b.js" crossorigin="anonymous"></script>
 
             
         
