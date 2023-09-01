@@ -117,7 +117,7 @@
                                             <!-- Aqui você pode adicionar uma imagem padrão para casos sem imagem -->
                                             <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid" alt="Imagem do Produto Padrão">
                                         @endif
-                                        <div class="card-body bg-info d-flex flex-column justify-content-end text-center">
+                                        <div class="card-body bg-primary d-flex flex-column justify-content-end text-center text-light">
                                             <h5 class="card-title">{{ $produto->nome }}</h5>
                                             <p class="card-text">Pontuação: {{ $produto->pontuacao }}</p>
                                         </div>
@@ -151,7 +151,7 @@
                                         <!-- Adicione a imagem padrão aqui -->
                                         <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid" alt="Imagem do Produto Padrão">
                                     @endif
-                                    <div class="card-body bg-info d-flex flex-column justify-content-end">
+                                    <div class="card-body bg-primary d-flex flex-column justify-content-end text-center text-light">
                                         <h5 class="card-title">{{ $produto->nome }}</h5>
                                         <p class="card-text">Pontuação: {{ $produto->pontuacao }}</p>
                                     </div>
