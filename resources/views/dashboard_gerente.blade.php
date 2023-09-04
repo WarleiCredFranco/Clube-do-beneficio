@@ -110,12 +110,12 @@
                         @foreach ($produtos as $produto)
                             @if ($produto->status == 1) <!-- Verificar o status do produto -->  
                                 <div class="col-md-2 d-flex mb-4">
-                                    <div class="card flex-fill d-flex flex-column">
+                                    <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden" style="border-radius: 10px;">
                                         @if ($produto->imagem)
-                                            <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid" alt="Imagem do Produto">
+                                            <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto">
                                         @else
                                             <!-- Aqui você pode adicionar uma imagem padrão para casos sem imagem -->
-                                            <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid" alt="Imagem do Produto Padrão">
+                                            <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto Padrão">
                                         @endif
                                         <div class="card-body bg-primary d-flex flex-column justify-content-end text-center text-light">
                                             <h5 class="card-title">{{ $produto->nome }}</h5>
@@ -144,12 +144,12 @@
                     <div class="row">
                         @foreach ($produtos_desativados as $produto)
                             <div class="col-md-2 d-flex mb-4">
-                                <div class="card flex-fill d-flex flex-column">
+                                <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden" style="border-radius: 10px;">
                                     @if ($produto->imagem)
-                                        <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid" alt="Imagem do Produto">
+                                        <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto">
                                     @else
                                         <!-- Adicione a imagem padrão aqui -->
-                                        <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid" alt="Imagem do Produto Padrão">
+                                        <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto Padrão">
                                     @endif
                                     <div class="card-body bg-primary d-flex flex-column justify-content-end text-center text-light">
                                         <h5 class="card-title">{{ $produto->nome }}</h5>
