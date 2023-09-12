@@ -7,6 +7,24 @@
     <title>Página Principal do Cliente</title>
     <!-- Seus estilos CSS aqui -->
 </head>
+
+<style>
+        .img-container{
+            overflow: hidden;
+        }
+
+        .img-container img{
+            -webkit-transition: -webkit-transform .3s ease;
+            transition: transform .3s ease;
+        }
+
+        .img-container:hover img{
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+</style>
+
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Clube do Benefício</a>
@@ -75,7 +93,7 @@
                     <!-- Exibir os produtos de troca -->
                     @foreach ($produtosTroca as $produtoTroca)
                         <div class="col-md-2 d-flex mb-4">
-                            <div class="card flex-fill d-flex flex-column">
+                            <div class="card flex-fill d-flex flex-column img-container">
                                 <img src="{{ asset('storage/images/produtos/' . basename($produtoTroca->imagem)) }}" class="card-img-top" alt="Imagem do Produto de Troca">
                                 <div class="card-body d-flex flex-column justify-content-end">
                                     <h5 class="card-title">{{ $produtoTroca->nome }}</h5>
@@ -95,6 +113,34 @@
                    @endforeach
                 </div>
             </div>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <!-- Lista de Produtos em promoção -->
+                <h2 class="text-center text-info">Produtos em promoção</h2><br>
+                <div class="container" style="display: flex; align-items: center; justify-content: center;">
+                    <div class="row">
+                        @foreach ($produtos as $produto)
+                            @if ($produto->status == 1) <!-- Verificar o status do produto -->  
+                                <div class="col-md-2 d-flex mb-4">
+                                    <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden img-container" style="border-radius: 10px;">
+                                        @if ($produto->imagem)
+                                            <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto">
+                                        @else
+                                            <!-- Aqui você pode adicionar uma imagem padrão para casos sem imagem -->
+                                            <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto Padrão">
+                                        @endif
+                                        <div class="card-body bg-info d-flex flex-column justify-content-end text-center text-light">
+                                            <h5 class="card-title">{{ $produto->nome }}</h5>
+                                            <p class="card-text">Pontuação: {{ $produto->pontuacao }}</p>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
 
             @if (session('success') === 'pontos_trocados')
                 <p>Você trocou seus pontos por este produto. Seu voucher está disponível!</p>

@@ -29,6 +29,21 @@
             object-fit: contain; /* Ajustar a imagem mantendo a proporção */
             margin-bottom: 15px; /* Espaçamento entre a imagem e o texto */
         }
+
+
+        .img-container{
+            overflow: hidden;
+        }
+
+        .img-container img{
+            -webkit-transition: -webkit-transform .5s ease;
+            transition: transform .5s ease;
+        }
+
+        .img-container:hover img{
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -83,7 +98,7 @@
         <div class="row mt-4">
             @foreach ($vouchers as $voucher)
                 <div class="col-md-4 mb-4">
-                    <div class="card voucher-card">
+                    <div class="card voucher-card img-container">
                         <img src="{{ asset('storage/images/produtos/' . basename($voucher->produto->imagem)) }}" class="card-img-top" alt="Imagem do Produto">
                         <div class="card-body">
                             <h5 class="card-title">{{ $voucher->produto->nome }}</h5>

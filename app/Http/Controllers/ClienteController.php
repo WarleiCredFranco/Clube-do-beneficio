@@ -23,9 +23,13 @@ class ClienteController extends Controller
 
         $pontosCliente = $user->pontuacao;
         $produtosTroca = ProdutosTroca::all();
+        $produtos = Produto::all();
 
 
-        return view('dashboard_cliente', compact('pontosCliente', 'produtosTroca'));
+        return view('dashboard_cliente', compact('pontosCliente', 'produtosTroca', 'produtos'));
+
+         // Ou qualquer consulta que você precise fazer
+
 
     }
 
@@ -86,7 +90,10 @@ class ClienteController extends Controller
         $voucher->save();
 
         return redirect()->route('meus_vouchers')->with('success', 'Pontos trocados com sucesso! Você recebeu um voucher.');
-    }   
+    }
+
+
+
 
 
 }

@@ -8,6 +8,24 @@
     <title>Página Principal do Gerente</title>
     <!-- Seus estilos CSS aqui -->
 </head>
+
+<style>
+        .img-container{
+            overflow: hidden;
+        }
+
+        .img-container img{
+            -webkit-transition: -webkit-transform .3s ease;
+            transition: transform .3s ease;
+        }
+
+        .img-container:hover img{
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+</style>
+
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Clube do Benefício</a>
@@ -110,7 +128,7 @@
                         @foreach ($produtos as $produto)
                             @if ($produto->status == 1) <!-- Verificar o status do produto -->  
                                 <div class="col-md-2 d-flex mb-4">
-                                    <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden" style="border-radius: 10px;">
+                                    <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden img-container" style="border-radius: 10px;">
                                         @if ($produto->imagem)
                                             <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto">
                                         @else
@@ -144,12 +162,12 @@
                     <div class="row">
                         @foreach ($produtos_desativados as $produto)
                             <div class="col-md-2 d-flex mb-4">
-                                <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden" style="border-radius: 10px;">
+                                <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden img-container" style="border-radius: 10px;">
                                     @if ($produto->imagem)
-                                        <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto">
+                                        <img src="{{ asset('storage/images/produtos/' . basename($produto->imagem)) }}" class="card-img-top img-fluid" alt="Imagem do Produto">
                                     @else
                                         <!-- Adicione a imagem padrão aqui -->
-                                        <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto Padrão">
+                                        <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid" alt="Imagem do Produto Padrão">
                                     @endif
                                     <div class="card-body bg-primary d-flex flex-column justify-content-end text-center text-light">
                                         <h5 class="card-title">{{ $produto->nome }}</h5>
