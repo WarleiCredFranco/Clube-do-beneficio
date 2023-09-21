@@ -301,6 +301,29 @@
                 <hr>
                 <br>
 
+                <form class="form-control" action="{{ route('definir.pontuacao.produtos.troca') }}" method="POST">
+                @csrf
+                    <h2 class="text-center text-info">Definir Pontuação de Produtos para troca:</h2><br>
+                    <div class="row">
+                        <?php foreach ($produtos_troca as $produto_troca) : ?>
+                            <div class="form-group col-md-4">
+                                <label class="form-group" for="pontuacao_produto_troca<?php echo $produto_troca['id']; ?>"><?php echo $produto_troca['nome']; ?>:</label>
+                                <input class="form-control text-center" type="number" name="pontuacao_produto_troca<?php echo $produto_troca['id']; ?>" value="<?php echo $produto_troca['pontuacao']; ?>">
+                                <br>
+                            </div>
+                        <?php endforeach; ?> 
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <button class="btn btn-primary col-md-12" type="submit">Salvar Pontuações</button>  
+                        </div>  
+                    </div>                           
+                </form>
+
+                <br>
+                <hr>
+                <br>
+
                 <!-- Lista de Clientes com Vouchers não trocados -->
                 <h2 class="text-center text-info">Lista de Clientes com Vouchers não trocados</h2>
                 <table class="table table-striped">

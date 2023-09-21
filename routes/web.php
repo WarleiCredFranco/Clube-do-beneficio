@@ -30,6 +30,7 @@ Route::middleware(['auth', 'role:gerente'])->group(function () {
     Route::post('/adicionar-produto-troca', [GerenteController::class, 'adicionarProdutoTroca'])->name('adicionar.produto.troca');
     Route::post('/confirmar-voucher/{codigo_voucher}', [GerenteController::class, 'confirmarVoucher'])->name('confirmar.voucher');
     Route::get('/lista_vouchers_confirmados', [GerenteController::class, 'listaVouchersConfirmados'])->name('lista.vouchers.confirmados');
+    Route::post('/definir-pontuacao-produtos-troca', [GerenteController::class, 'definirPontuacaoProdutosTroca'])->name('definir.pontuacao.produtos.troca');
 
 
 

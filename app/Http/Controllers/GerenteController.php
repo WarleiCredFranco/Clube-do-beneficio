@@ -164,6 +164,27 @@ class GerenteController extends Controller
         return redirect()->route('dashboard_gerente')->with('success', 'Novo produto de troca adicionado com sucesso!');
     }
 
+
+    public function definirPontuacaoProdutosTroca(Request $request)
+    {
+        // Loop através dos produtos para atualizar as pontuações
+        foreach ($request->all() as $key => $value) {
+            if (strpos($key, 'pontuacao_produto_troca') === 0) {
+                $produtos_trocaId = str_replace('pontuacao_produto_troca', '', $key);
+                $produtos_troca = ProdutosTroca::find($produtos_trocaId);
+                
+                if ($produtos_troca) {
+                    $produtos_troca->pontuacao = $value;
+                    $produtos_troca->save();
+                }
+            }
+        }
+
+        return redirect()->route('dashboard_gerente')->with('success', 'Pontuações dos produtos de troca atualizadas com sucesso!');
+    }
+
+
+
     public function confirmarVoucher($codigoVoucher)
     {
         $voucher = Voucher::where('codigo_voucher', $codigoVoucher)->first();
