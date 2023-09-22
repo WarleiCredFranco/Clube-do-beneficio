@@ -20,13 +20,15 @@ class GerenteController extends Controller
         $produtos_ativos = Produto::where('status', 1)->get();
         $produtos_desativados = Produto::where('status', 0)->get();
         $produtos_troca = ProdutosTroca::all();
+        $produtos_troca_ativos = ProdutosTroca::where('status', 1)->get();
+        $produtos_troca_desativados = ProdutosTroca::where('status', 0)->get();
         $clientes_vouchers = User::leftJoin('vouchers', 'users.id', '=', 'vouchers.id_cliente')
             ->leftJoin('produtos_troca', 'vouchers.id_produto', '=', 'produtos_troca.id')
             ->where('vouchers.trocado', 0)
             ->select('users.id AS id_cliente', 'users.name AS nome_cliente', 'vouchers.codigo_voucher', 'vouchers.data_geracao', 'produtos_troca.nome AS nome_produto')
             ->get();
 
-        return view('dashboard_gerente', compact('clientes', 'produtos_ativos', 'produtos_desativados', 'produtos', 'produtos_troca', 'clientes_vouchers'));
+        return view('dashboard_gerente', compact('clientes', 'produtos_ativos', 'produtos_desativados', 'produtos_troca_ativos', 'produtos_troca_desativados', 'produtos', 'produtos_troca', 'clientes_vouchers'));
     }
 
 
@@ -82,6 +84,32 @@ class GerenteController extends Controller
 
         return redirect()->route('dashboard_gerente')->with('success', 'Produto reativado com sucesso!');
     }
+
+    // Desativar e reativar produto de troca
+    public function desativarProdutoTroca(Request $request)
+    {
+        $produtos_troca = ProdutosTroca::find($request->id_produto);
+
+        if ($produtos_troca) {
+            $produtos_troca->status = 0; // Desativar o produto (alterar o status para 0)
+            $produtos_troca->save();
+        }
+
+        return redirect()->route('dashboard_gerente')->with('success', 'Produto desativado com sucesso!');
+    }
+
+    public function reativarProdutoTroca(Request $request)
+    {
+        $produtos_troca = ProdutosTroca::find($request->id_produto);
+
+        if ($produtos_troca) {
+            $produtos_troca->status = 1; // Ativar o produto (alterar o status para 1)
+            $produtos_troca->save();
+        }
+
+        return redirect()->route('dashboard_gerente')->with('success', 'Produto reativado com sucesso!');
+    }
+
 
 
 

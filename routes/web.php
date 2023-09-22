@@ -24,7 +24,9 @@ Route::middleware(['auth', 'role:gerente'])->group(function () {
     Route::get('/dashboard_gerente', [GerenteController::class, 'dashboard'])->name('dashboard_gerente');
     Route::post('/cadastrar_produto', [GerenteController::class, 'cadastrarProduto'])->name('cadastrar.produto'); // Adicione esta linha
     Route::post('/desativar-produto', [GerenteController::class, 'desativarProduto'])->name('desativar.produto');
+    Route::post('/desativar-produto-troca', [GerenteController::class, 'desativarProdutoTroca'])->name('desativar.produto.troca');
     Route::post('/reativar-produto', [GerenteController::class, 'reativarProduto'])->name('reativar.produto');
+    Route::post('/reativar-produto-troca', [GerenteController::class, 'reativarProdutoTroca'])->name('reativar.produto.troca');
     Route::post('/marcar-produtos', [GerenteController::class, 'marcarProdutos'])->name('marcar.produtos');
     Route::post('/definir-pontuacao', [GerenteController::class, 'definirPontuacao'])->name('definir.pontuacao');
     Route::post('/adicionar-produto-troca', [GerenteController::class, 'adicionarProdutoTroca'])->name('adicionar.produto.troca');

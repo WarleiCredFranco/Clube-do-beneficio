@@ -92,24 +92,26 @@
                 <div class="row">
                     <!-- Exibir os produtos de troca -->
                     @foreach ($produtosTroca as $produtoTroca)
-                        <div class="col-md-2 d-flex mb-4">
-                            <div class="card flex-fill d-flex flex-column img-container">
-                                <img src="{{ asset('storage/images/produtos/' . basename($produtoTroca->imagem)) }}" class="card-img-top" alt="Imagem do Produto de Troca">
-                                <div class="card-body d-flex flex-column justify-content-end">
-                                    <h5 class="card-title">{{ $produtoTroca->nome }}</h5>
-                                    <p class="card-text">Pontuação: {{ $produtoTroca->pontuacao }}</p>
-                                    @if ($pontosCliente >= $produtoTroca->pontuacao)
-                                        <form action="{{ route('gerar.voucher') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="id_produto" value="{{ $produtoTroca->id }}">
-                                            <button type="submit" class="btn btn-primary">Gerar Voucher</button>
-                                        </form>
-                                    @else
-                                        <p class="text-danger">Você não possui pontos suficientes para trocar por este produto.</p>
-                                    @endif
+                        @if ($produtoTroca->status == 1) <!-- Verificar o status do produto -->
+                            <div class="col-md-2 d-flex mb-4">
+                                <div class="card flex-fill d-flex flex-column img-container">
+                                    <img src="{{ asset('storage/images/produtos/' . basename($produtoTroca->imagem)) }}" class="card-img-top" alt="Imagem do Produto de Troca">
+                                    <div class="card-body d-flex flex-column justify-content-end">
+                                        <h5 class="card-title">{{ $produtoTroca->nome }}</h5>
+                                        <p class="card-text">Pontuação: {{ $produtoTroca->pontuacao }}</p>
+                                        @if ($pontosCliente >= $produtoTroca->pontuacao)
+                                            <form action="{{ route('gerar.voucher') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id_produto" value="{{ $produtoTroca->id }}">
+                                                <button type="submit" class="btn btn-primary">Gerar Voucher</button>
+                                            </form>
+                                        @else
+                                            <p class="text-danger">Você não possui pontos suficientes para trocar por este produto.</p>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                    @endforeach
                 </div>
             </div>

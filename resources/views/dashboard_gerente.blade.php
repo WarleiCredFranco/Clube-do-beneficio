@@ -23,6 +23,7 @@
             -webkit-transform: scale(1.1);
             transform: scale(1.1);
         }
+
 </style>
 
 
@@ -278,29 +279,76 @@
                 <hr>
                 <br>
 
-                <!-- Lista de Produtos para Troca -->
-                <h2 class="text-center text-info">Produtos para Troca:</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nome do Produto</th>
-                            <th scope="col">Pontuação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($produtos_troca as $produto_troca) : ?>
-                            <tr>
-                                <td><?php echo $produto_troca['nome']; ?></td>
-                                <td><?php echo $produto_troca['pontuacao']; ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+
+                <!-- Lista de Produtos para troca -->
+                <h2 class="text-center text-info">Lista de Produtos para troca</h2><br>
+                <div class="container" style="display: flex; align-items: center; justify-content: center;">
+                    <div class="row">
+                        @foreach ($produtos_troca as $produto_troca)
+                            @if ($produto_troca->status == 1) <!-- Verificar o status do produto -->  
+                                <div class="col-md-2 d-flex mb-4">
+                                    <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden img-container" style="border-radius: 10px;">
+                                        @if ($produto_troca->imagem)
+                                            <img src="{{ asset('storage/images/produtos/' . basename($produto_troca->imagem)) }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto">
+                                        @else
+                                            <!-- Aqui você pode adicionar uma imagem padrão para casos sem imagem -->
+                                            <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid object-fit: cover; overflow: hidden;" alt="Imagem do Produto Padrão">
+                                        @endif
+                                        <div class="card-body bg-primary d-flex flex-column justify-content-end text-center text-light">
+                                            <h5 class="card-title">{{ $produto_troca->nome }}</h5>
+                                            <p class="card-text">Pontuação: {{ $produto_troca->pontuacao }}</p>
+                                        </div>
+                                        <!-- Botão para desativar o produto -->
+                                        <form action="{{ route('desativar.produto.troca') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="id_produto" value="{{ $produto_troca->id }}">
+                                            <button type="submit" class="btn btn-danger">Desativar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+
+
+                <br>
+                <hr>
+                <br>
+                <!-- Lista de Produtos Desativados -->
+                <h2 class="text-center text-info">Lista de Produtos Desativados</h2><br>
+                <div class="container" style="display: flex; align-items: center; justify-content: center;">
+                    <div class="row">
+                        @foreach ($produtos_troca_desativados as $produto_troca)
+                            <div class="col-md-2 d-flex mb-4">
+                                <div class="card flex-fill d-flex flex-column rounded-card shadow overflow-hidden img-container" style="border-radius: 10px;">
+                                    @if ($produto_troca->imagem)
+                                        <img src="{{ asset('storage/images/produtos/' . basename($produto_troca->imagem)) }}" class="card-img-top img-fluid" alt="Imagem do Produto">
+                                    @else
+                                        <!-- Adicione a imagem padrão aqui -->
+                                        <img src="{{ asset('storage/images/produtos/imagem-padrao.jpg') }}" class="card-img-top img-fluid" alt="Imagem do Produto Padrão">
+                                    @endif
+                                    <div class="card-body bg-primary d-flex flex-column justify-content-end text-center text-light">
+                                        <h5 class="card-title">{{ $produto_troca->nome }}</h5>
+                                        <p class="card-text">Pontuação: {{ $produto_troca->pontuacao }}</p>
+                                    </div>
+                                    <!-- Botão para reativar o produto -->
+                                    <form action="{{ route('reativar.produto.troca') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id_produto" value="{{ $produto_troca->id }}">
+                                        <button type="submit" class="btn btn-success">Reativar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
 
                 <br>
                 <hr>
                 <br>
 
+                <!-- Definir Pontuação de Produtos para troca -->
                 <form class="form-control" action="{{ route('definir.pontuacao.produtos.troca') }}" method="POST">
                 @csrf
                     <h2 class="text-center text-info">Definir Pontuação de Produtos para troca:</h2><br>
@@ -315,7 +363,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <button class="btn btn-primary col-md-12" type="submit">Salvar Pontuações</button>  
+                            <button class="btn btn-primary col-md-12" type="submit">Definir Pontuações</button>  
                         </div>  
                     </div>                           
                 </form>
