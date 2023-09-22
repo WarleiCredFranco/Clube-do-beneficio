@@ -24,10 +24,11 @@
             transform: scale(1.1);
         }
 
+
 </style>
 
 
-<body>
+<body class="">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Clube do Benefício</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +77,7 @@
             <!-- Lista de Clientes Cadastrados -->
             <!-- Lista de Clientes Cadastrados -->
             <h2 class="text-center text-info">Lista de Clientes Cadastrados</h2>
-            <table class="table table-striped">
+            <table class="table table-info table-striped table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Nome do Cliente</th>
@@ -199,7 +200,7 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="id_cliente">Selecione o Cliente:</label>
-                        <select class="form-control" name="id_cliente" required>
+                        <select class="form-select" aria-label="Default select example" name="id_cliente" required>
                             @foreach ($clientes as $cliente)
                                 <option value="{{ $cliente->id }}">{{ $cliente->name }}</option>
                             @endforeach
@@ -209,7 +210,7 @@
                     <br>
                     <div class="form-group col-md-6">
                         <label for="id_produto">Selecione o Produto:</label>
-                        <select class="form-control" name="id_produto" required>
+                        <select class="form-select" aria-label="Default select example" name="id_produto" required>
                             @foreach ($produtos as $produto)
                                 <option value="{{ $produto->id }}">{{ $produto->nome }} - Pontuação: {{ $produto->pontuacao }}</option>
                             @endforeach
@@ -374,7 +375,7 @@
 
                 <!-- Lista de Clientes com Vouchers não trocados -->
                 <h2 class="text-center text-info">Lista de Clientes com Vouchers não trocados</h2>
-                <table class="table table-striped">
+                <table class="table table-info table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID Cliente</th>
