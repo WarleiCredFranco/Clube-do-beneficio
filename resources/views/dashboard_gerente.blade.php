@@ -77,7 +77,7 @@
             <!-- Lista de Clientes Cadastrados -->
             <!-- Lista de Clientes Cadastrados -->
             <h2 class="text-center text-info">Lista de Clientes Cadastrados</h2>
-            <table class="table table-info table-striped table-bordered">
+            <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Nome do Cliente</th>
@@ -375,7 +375,7 @@
 
                 <!-- Lista de Clientes com Vouchers não trocados -->
                 <h2 class="text-center text-info">Lista de Clientes com Vouchers não trocados</h2>
-                <table class="table table-info table-striped table-bordered">
+                <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID Cliente</th>
