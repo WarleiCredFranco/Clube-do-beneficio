@@ -89,7 +89,7 @@
 
             <h2 class="text-center text-info">Lista de Produtos Disponíveis para troca</h2><br>
             <div class="container" style="display: flex; align-items: center; justify-content: center;">
-                <div class="row">
+                <div class="row justify-content-center">
                     <!-- Exibir os produtos de troca -->
                     @foreach ($produtosTroca as $produtoTroca)
                         @if ($produtoTroca->status == 1) <!-- Verificar o status do produto -->
@@ -122,7 +122,7 @@
             <!-- Lista de Produtos em promoção -->
                 <h2 class="text-center text-info">Produtos em promoção</h2><br>
                 <div class="container" style="display: flex; align-items: center; justify-content: center;">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         @foreach ($produtos as $produto)
                             @if ($produto->status == 1) <!-- Verificar o status do produto -->  
                                 <div class="col-md-2 d-flex mb-4">

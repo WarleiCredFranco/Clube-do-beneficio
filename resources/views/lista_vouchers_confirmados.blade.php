@@ -54,7 +54,7 @@
 
     <h2 class="text-center text-info">Lista de Vouchers Confirmados</h2><br>
     <div class="container" style="display: flex; align-items: center; justify-content: center;">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                     <th scope="col">ID Cliente</th>
